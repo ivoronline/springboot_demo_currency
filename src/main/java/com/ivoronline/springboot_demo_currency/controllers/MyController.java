@@ -72,31 +72,4 @@ public class MyController {
 
   }
 
-  //================================================================================
-  // ADD CURRENCY (HELPER)
-  //================================================================================
-  @ResponseBody
-  @PostMapping("/AddCurrency")
-  public String addCurrency(@RequestBody Currency currency)  {
-
-    //REFORMAT EXCHANGE RATE
-    currency.exchangeRate = Double.parseDouble(currency.exchangeRateString.replace(",", "."));
-
-    //STORE ENTITY
-    currencyRepository.save(currency);
-
-    //RETURN SOMETHING TO BROWSER
-    return "Currency added to DB";
-
-  }
-
-  //================================================================================
-  // HELLO (HELPER)
-  //================================================================================
-  @ResponseBody
-  @RequestMapping("/Hello")
-  public String hello() {
-    return "Hello from Controller";
-  }
-
 }
