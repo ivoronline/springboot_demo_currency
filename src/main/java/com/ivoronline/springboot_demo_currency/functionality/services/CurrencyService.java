@@ -1,7 +1,7 @@
-package com.ivoronline.springboot_demo_currency.services;
+package com.ivoronline.springboot_demo_currency.functionality.services;
 
-import com.ivoronline.springboot_demo_currency.entities.Currency;
-import com.ivoronline.springboot_demo_currency.repositories.CurrencyRepository;
+import com.ivoronline.springboot_demo_currency.functionality.entities.Currency;
+import com.ivoronline.springboot_demo_currency.functionality.repositories.CurrencyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;

@@ -1,7 +1,8 @@
-package com.ivoronline.springboot_demo_currency.scheduledtasks;
+package com.ivoronline.springboot_demo_currency.functionality.scheduledtasks;
 
-import com.ivoronline.springboot_demo_currency.services.CurrencyService;
+import com.ivoronline.springboot_demo_currency.functionality.services.CurrencyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -14,11 +15,17 @@ public class ScheduledTasks {
 
   @Autowired CurrencyService currencyService;
 
+  @Value("${loadCurrentYear}")
+  private Boolean loadCurrentYear;
+
   //=========================================================================
-  // LOAD HISTORY
+  // LOAD CURRENT YEAR (EVERY 24h)
   //=========================================================================
-  @Scheduled(fixedDelay = 50000, initialDelay = 1000)
+  @Scheduled(fixedDelay = 24 * 60 * 60 * 1000, initialDelay = 1000)
   public void loadCurrentYear() throws InterruptedException {
+
+    //RETURN IF CURRENT YEAR SHOULD NOT BE LOADED
+    if(!loadCurrentYear) { return; }
 
     //LOG
     System.out.println("STARTED TASK: loadCurrentYear() ----------------------------------");
