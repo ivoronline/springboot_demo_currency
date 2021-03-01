@@ -1,6 +1,5 @@
 package com.ivoronline.springboot_demo_currency.scheduledtasks;
 
-import com.ivoronline.springboot_demo_currency.repositories.CurrencyRepository;
 import com.ivoronline.springboot_demo_currency.services.CurrencyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
