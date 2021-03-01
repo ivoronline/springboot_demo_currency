@@ -1,10 +1,8 @@
-package com.ivoronline.springboot_demo_currency.controllers;
+package com.ivoronline.springboot_demo_currency.functionality.controllers;
 
-import com.ivoronline.springboot_demo_currency.entities.Currency;
-import com.ivoronline.springboot_demo_currency.repositories.CurrencyRepository;
+import com.ivoronline.springboot_demo_currency.functionality.repositories.CurrencyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +19,7 @@ public class MyController {
   // GET ALL CURRENCY NAMES
   //================================================================================
   @ResponseBody
+  @PreAuthorize("hasAuthority('GetAllCurrencyNames')")
   @RequestMapping("/GetAllCurrencyNames")
   public List<String> getAllCurrencyNames()  {
 
@@ -36,6 +35,7 @@ public class MyController {
   // GET FIRST LAST DATE
   //================================================================================
   @ResponseBody
+  @PreAuthorize("hasAuthority('GetFirstLastDate')")
   @RequestMapping("/GetFirstLastDate")
   public LocalDate[] getFirstLastDate(@RequestParam String currencyName)  {
 
@@ -53,6 +53,7 @@ public class MyController {
   // GET AVERAGE VALUE
   //================================================================================
   @ResponseBody
+  @PreAuthorize("hasAuthority('GetAverageValue')")
   @RequestMapping("/GetAverageValue")
   public Float getAverageValue(
     @RequestParam String currencyName,

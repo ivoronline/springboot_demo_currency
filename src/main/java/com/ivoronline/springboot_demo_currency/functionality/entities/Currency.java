@@ -1,4 +1,4 @@
-package com.ivoronline.springboot_demo_currency.entities;
+package com.ivoronline.springboot_demo_currency.functionality.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

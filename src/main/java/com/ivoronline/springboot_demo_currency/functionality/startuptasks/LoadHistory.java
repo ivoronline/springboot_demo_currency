@@ -1,6 +1,6 @@
-package com.ivoronline.springboot_demo_currency.startuptasks;
+package com.ivoronline.springboot_demo_currency.functionality.startuptasks;
 
-import com.ivoronline.springboot_demo_currency.services.CurrencyService;
+import com.ivoronline.springboot_demo_currency.functionality.services.CurrencyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
