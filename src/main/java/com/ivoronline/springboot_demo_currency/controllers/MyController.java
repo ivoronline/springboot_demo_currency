@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -19,11 +18,11 @@ public class MyController {
   @Autowired CurrencyRepository currencyRepository;
 
   //================================================================================
-  // SELECT ALL CURRENCY NAMES
+  // GET ALL CURRENCY NAMES
   //================================================================================
   @ResponseBody
-  @RequestMapping("/SelectAllCurrencyNames")
-  public List<String> selectAllCurrencyNames()  {
+  @RequestMapping("/GetAllCurrencyNames")
+  public List<String> getAllCurrencyNames()  {
 
     //STORE ENTITY
     List<String> allCurrencyNames = currencyRepository.getAllCurrencyNames();
@@ -34,7 +33,7 @@ public class MyController {
   }
 
   //================================================================================
-  // GET FIRST LAST ENTRY
+  // GET FIRST LAST DATE
   //================================================================================
   @ResponseBody
   @RequestMapping("/GetFirstLastDate")
@@ -74,7 +73,7 @@ public class MyController {
   }
 
   //================================================================================
-  // ADD CURRENCY
+  // ADD CURRENCY (HELPER)
   //================================================================================
   @ResponseBody
   @PostMapping("/AddCurrency")
@@ -92,7 +91,7 @@ public class MyController {
   }
 
   //================================================================================
-  // HELLO
+  // HELLO (HELPER)
   //================================================================================
   @ResponseBody
   @RequestMapping("/Hello")
