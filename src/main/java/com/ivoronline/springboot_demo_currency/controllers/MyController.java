@@ -19,7 +19,7 @@ public class MyController {
 
   //================================================================================
   // GET ALL CURRENCY NAMES
-  //================================================================================
+  //=================================================================================
   @ResponseBody
   @RequestMapping("/GetAllCurrencyNames")
   public List<String> getAllCurrencyNames()  {
