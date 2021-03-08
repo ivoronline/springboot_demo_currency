@@ -17,7 +17,7 @@ public class MyController {
 
   //================================================================================
   // GET ALL CURRENCY NAMES
-  //================================================================================
+  //=================================================================================
   @ResponseBody
   @PreAuthorize("hasAuthority('GetAllCurrencyNames')")
   @RequestMapping("/GetAllCurrencyNames")
