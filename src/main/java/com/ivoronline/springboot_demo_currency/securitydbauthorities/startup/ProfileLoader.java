@@ -25,6 +25,7 @@ public class ProfileLoader implements CommandLineRunner {
     Authority getAllCurrencyNames = authorityRepository.findById("GetAllCurrencyNames").get();
     Authority getFirstLastDate    = authorityRepository.findById("GetFirstLastDate"   ).get();
     Authority getAverageValue     = authorityRepository.findById("GetAverageValue"    ).get();
+    Authority getLog              = authorityRepository.findById("GetLog"             ).get();
 
     //USER
     Profile user      = new Profile();
@@ -37,6 +38,7 @@ public class ProfileLoader implements CommandLineRunner {
             admin.authorities.add(getAllCurrencyNames);
             admin.authorities.add(getFirstLastDate);
             admin.authorities.add(getAverageValue);
+            admin.authorities.add(getLog);
 
     //STORE PROFILES INTO DB
     profileRepository.save(user);

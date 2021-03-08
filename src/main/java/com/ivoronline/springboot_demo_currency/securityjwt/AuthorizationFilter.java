@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class MyFilter implements Filter {
+public class AuthorizationFilter implements Filter {
 
   @Autowired private JWTUtil jwtUtil;
 

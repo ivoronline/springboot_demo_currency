@@ -20,6 +20,7 @@ public class AuthorityLoader implements CommandLineRunner {
     authorityRepository.save(new Authority("GetAllCurrencyNames"));
     authorityRepository.save(new Authority("GetFirstLastDate"));
     authorityRepository.save(new Authority("GetAverageValue"));
+    authorityRepository.save(new Authority("GetLog"));
   }
 
 }
