@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MyUserDetailsService implements UserDetailsService {
@@ -29,7 +30,9 @@ public class MyUserDetailsService implements UserDetailsService {
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
     //GET ACCOUNT
-    Account account = accountRepository.findById(username).get();
+    Optional<Account> optionalAccount = accountRepository.findById(username);
+    if(optionalAccount.isEmpty()) { return null; }
+    Account account = optionalAccount.get();
 
     //GET PROFILE (WITH AUTHORITIES)
     Profile profile = profileRepository.findById(account.profile).get();
