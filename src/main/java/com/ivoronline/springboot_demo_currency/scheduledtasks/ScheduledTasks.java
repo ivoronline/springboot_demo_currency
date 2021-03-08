@@ -2,6 +2,7 @@ package com.ivoronline.springboot_demo_currency.scheduledtasks;
 
 import com.ivoronline.springboot_demo_currency.services.CurrencyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -14,6 +15,9 @@ public class ScheduledTasks {
 
   @Autowired CurrencyService currencyService;
 
+  @Value("${loadCurrentYear}")
+  private Boolean loadCurrentYear;
+
   //=========================================================================
   // LOAD HISTORY
   //=========================================================================
@@ -22,6 +26,9 @@ public class ScheduledTasks {
 
     //LOG
     System.out.println("STARTED TASK: loadCurrentYear() ----------------------------------");
+
+    //RETURN IF HISTORY SHOULD NOT BE LOADED
+    if(!loadCurrentYear) { return; }
 
     //CONSTRUCT URL
     Date    currebtDate = new Date();
