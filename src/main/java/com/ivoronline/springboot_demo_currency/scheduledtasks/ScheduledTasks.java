@@ -19,20 +19,20 @@ public class ScheduledTasks {
   private Boolean loadCurrentYear;
 
   //=========================================================================
-  // LOAD HISTORY
+  // LOAD CURRENT YEAR
   //=========================================================================
   @Scheduled(fixedDelay = 50000, initialDelay = 1000)
   public void loadCurrentYear() throws InterruptedException {
 
-    //LOG
-    System.out.println("STARTED TASK: loadCurrentYear() ----------------------------------");
-
     //RETURN IF HISTORY SHOULD NOT BE LOADED
     if(!loadCurrentYear) { return; }
 
+    //LOG
+    System.out.println("STARTED TASK: loadCurrentYear() ----------------------------------");
+
     //CONSTRUCT URL
-    Date    currebtDate = new Date();
-    Integer year        = 1900 + currebtDate.getYear();
+    Date    currentDate = new Date();
+    Integer year        = 1900 + currentDate.getYear();
     String  url         = "http://api.hnb.hr/tecajn/v2?datum-primjene-od=" + year + "-01-01&datum-primjene-do=" + year + "-12-31";
 
     //GET CURRENCIES FOR CURRENT YEAR
