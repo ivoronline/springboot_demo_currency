@@ -1,14 +1,13 @@
-package com.ivoronline.springboot_demo_currency.repositories;
+package com.ivoronline.springboot_demo_currency.business.repositories;
 
-import com.ivoronline.springboot_demo_currency.entities.Currency;
-import com.ivoronline.springboot_demo_currency.entities.CurrencyId;
+import com.ivoronline.springboot_demo_currency.business.entities.CurrencyId;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
-
 import java.time.LocalDate;
 import java.util.List;
+import com.ivoronline.springboot_demo_currency.business.entities.Currency;
+import org.springframework.data.repository.CrudRepository;
 
-public interface  CurrencyRepository extends CrudRepository<Currency, CurrencyId> {
+public interface CurrencyRepository extends CrudRepository<Currency, CurrencyId> {
 
   //GET ALL CURRENCY NAMES
   @Query(nativeQuery = true, value = "SELECT DISTINCT CURRENCY_NAME FROM CURRENCY")
