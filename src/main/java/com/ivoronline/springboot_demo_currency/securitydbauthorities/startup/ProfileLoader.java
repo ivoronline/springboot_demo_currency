@@ -27,12 +27,12 @@ public class ProfileLoader implements CommandLineRunner {
     Authority getAverageValue     = authorityRepository.findById("GetAverageValue"    ).get();
     Authority getLog              = authorityRepository.findById("GetLog"             ).get();
 
-    //USER
+    //CREATE PROFILE: USER
     Profile user      = new Profile();
             user.name = "USER";
             user.authorities.add(getAllCurrencyNames);
 
-    //ADMIN
+    //CREATE PROFILE: ADMIN
     Profile admin      = new Profile();
             admin.name = "ADMIN";
             admin.authorities.add(getAllCurrencyNames);
