@@ -57,16 +57,16 @@ public class MyController {
   @RequestMapping("/GetAverageValue")
   public Float getAverageValue(
     @RequestParam String currencyName,
-    @RequestParam String startDateString,
-    @RequestParam String endDateString
+    @RequestParam String startDate,
+    @RequestParam String endDate
   )  {
 
     //CONVERT DATES
-    LocalDate startDate = LocalDate.parse(startDateString);
-    LocalDate endDate   = LocalDate.parse(endDateString);
+    LocalDate startDateConverted = LocalDate.parse(startDate);
+    LocalDate endDateConverted   = LocalDate.parse(endDate);
 
     //GET AVERAGE VALUE
-    Float avg = currencyRepository.getAverageValue(currencyName, startDate, endDate);
+    Float avg = currencyRepository.getAverageValue(currencyName, startDateConverted, endDateConverted);
 
     //RETURN AVERAGE VALUE
     return avg;
