@@ -8,14 +8,20 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.MissingServletRequestParameterException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
+
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -31,9 +37,9 @@ public class LogController {
   @PreAuthorize("hasAuthority('GetLog')")
   @RequestMapping("/GetLog")
   public ResponseEntity<StreamingResponseBody>  getLog(
-    @RequestParam String username,
-    @RequestParam String startDate,
-    @RequestParam String endDate
+    @RequestParam @NotBlank String username,
+    @RequestParam @NotBlank String startDate,
+    @RequestParam @NotBlank String endDate
   ) {
 
     //CONVERT DATES
@@ -96,6 +102,24 @@ public class LogController {
       .contentType(MediaType.APPLICATION_OCTET_STREAM)
       .header(HttpHeaders.CONTENT_DISPOSITION, "inline;filename=\"Log.xlsx\"")
       .body(workBook::write);
+
+  }
+
+  //==================================================================
+  // HANDLE EXCEPTIONS (it only catches first exception)
+  //==================================================================
+  @ResponseBody
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  @ExceptionHandler(MissingServletRequestParameterException.class)
+  public String handleExceptions(MissingServletRequestParameterException exception) {
+
+    //GET EXCEPTION DETAILS
+    String parameterType = exception.getParameterType(); //String
+    String parameterName = exception.getParameterName(); //name
+    String message       = exception.getMessage();       //Required String parameter 'name' is not present
+
+    //RETURN MESSAGE
+    return message;
 
   }
 
