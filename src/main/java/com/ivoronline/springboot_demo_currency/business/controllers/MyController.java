@@ -2,13 +2,24 @@ package com.ivoronline.springboot_demo_currency.business.controllers;
 
 import com.ivoronline.springboot_demo_currency.business.repositories.CurrencyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.BindException;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.MissingServletRequestParameterException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class MyController {
@@ -37,7 +48,7 @@ public class MyController {
   @ResponseBody
   @PreAuthorize("hasAuthority('GetFirstLastDate')")
   @RequestMapping("/GetFirstLastDate")
-  public LocalDate[] getFirstLastDate(@RequestParam String currencyName)  {
+  public LocalDate[] getFirstLastDate(@RequestParam @NotBlank String currencyName)  {
 
     LocalDate firstDate = currencyRepository.getFirstDate(currencyName);
     LocalDate lastDate  = currencyRepository.getLastDate(currencyName);
@@ -56,21 +67,56 @@ public class MyController {
   @PreAuthorize("hasAuthority('GetAverageValue')")
   @RequestMapping("/GetAverageValue")
   public Float getAverageValue(
-    @RequestParam String currencyName,
-    @RequestParam String startDateString,
-    @RequestParam String endDateString
+    @RequestParam @NotBlank String currencyName,
+    @RequestParam @NotBlank String startDate,
+    @RequestParam @NotBlank String endDate
   )  {
 
     //CONVERT DATES
-    LocalDate startDate = LocalDate.parse(startDateString);
-    LocalDate endDate   = LocalDate.parse(endDateString);
+    LocalDate startDateConverted = LocalDate.parse(startDate);
+    LocalDate endDateConverted   = LocalDate.parse(endDate);
 
     //GET AVERAGE VALUE
-    Float avg = currencyRepository.getAverageValue(currencyName, startDate, endDate);
+    Float avg = currencyRepository.getAverageValue(currencyName, startDateConverted, endDateConverted);
 
     //RETURN AVERAGE VALUE
     return avg;
 
   }
+
+  //==================================================================
+  // HANDLE EXCEPTIONS (it only catches first exception)
+  //==================================================================
+  @ResponseBody
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  @ExceptionHandler(MissingServletRequestParameterException.class)
+  public String handleExceptions(MissingServletRequestParameterException exception) {
+
+    //GET EXCEPTION DETAILS
+    String parameterType = exception.getParameterType(); //String
+    String parameterName = exception.getParameterName(); //name
+    String message       = exception.getMessage();       //Required String parameter 'name' is not present
+
+    //RETURN MESSAGE
+    return message;
+
+  }
+
+  //==================================================================
+  // HANDLE EXCEPTIONS (it only catches first exception)
+  //==================================================================
+  @ResponseBody
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  @ExceptionHandler(Exception.class)
+  public String handleMyExceptions(Exception exception) {
+
+    //GET EXCEPTION DETAILS
+    String message       = exception.getMessage();       //Required String parameter 'name' is not present
+
+    //RETURN MESSAGE
+    return message;
+
+  }
+
 
 }
