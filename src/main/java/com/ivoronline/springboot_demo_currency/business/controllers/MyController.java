@@ -4,9 +4,6 @@ import com.ivoronline.springboot_demo_currency.business.repositories.CurrencyRep
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.validation.BindException;
-import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,9 +14,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 public class MyController {
@@ -101,22 +96,5 @@ public class MyController {
     return message;
 
   }
-
-  //==================================================================
-  // HANDLE EXCEPTIONS (it only catches first exception)
-  //==================================================================
-  @ResponseBody
-  @ResponseStatus(HttpStatus.BAD_REQUEST)
-  @ExceptionHandler(Exception.class)
-  public String handleMyExceptions(Exception exception) {
-
-    //GET EXCEPTION DETAILS
-    String message       = exception.getMessage();       //Required String parameter 'name' is not present
-
-    //RETURN MESSAGE
-    return message;
-
-  }
-
 
 }
