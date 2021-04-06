@@ -1,5 +1,8 @@
 package com.ivoronline.springboot_demo_currency.business.controllers;
 
+import com.ivoronline.springboot_demo_currency.business.DTO.AverageDTO;
+import com.ivoronline.springboot_demo_currency.business.DTO.CurrenciesDTO;
+import com.ivoronline.springboot_demo_currency.business.DTO.DatesDTO;
 import com.ivoronline.springboot_demo_currency.business.repositories.CurrencyRepository;
 import com.ivoronline.springboot_demo_currency.loggerAOP.LogStartEnd;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import java.time.LocalDate;
-import java.util.List;
 
 @Controller
 public class MyController {
@@ -23,13 +25,14 @@ public class MyController {
   @ResponseBody
   @PreAuthorize("hasAuthority('GetAllCurrencyNames')")
   @RequestMapping("/GetAllCurrencyNames")
-  public List<String> getAllCurrencyNames()  {
+  public CurrenciesDTO getAllCurrencyNames()  {
 
-    //STORE ENTITY
-    List<String> allCurrencyNames = currencyRepository.getAllCurrencyNames();
+    //CREATE DTO
+    CurrenciesDTO currenciesDTO = new CurrenciesDTO();
+               currenciesDTO.allCurrencyNames = currencyRepository.getAllCurrencyNames();
 
     //RETURN SOMETHING TO BROWSER
-    return allCurrencyNames;
+    return currenciesDTO;
 
   }
 
@@ -40,15 +43,15 @@ public class MyController {
   @ResponseBody
   @PreAuthorize("hasAuthority('GetFirstLastDate')")
   @RequestMapping("/GetFirstLastDate")
-  public LocalDate[] getFirstLastDate(@RequestParam String currencyName)  {
+  public DatesDTO getFirstLastDate(@RequestParam String currencyName)  {
 
-    LocalDate firstDate = currencyRepository.getFirstDate(currencyName);
-    LocalDate lastDate  = currencyRepository.getLastDate(currencyName);
-
-    LocalDate[] dates = {firstDate, lastDate};
+    //CREATE DTO
+    DatesDTO datesDTO = new DatesDTO();
+          datesDTO.firstDate = currencyRepository.getFirstDate(currencyName);
+          datesDTO.lastDate  = currencyRepository.getLastDate (currencyName);
 
     //RETURN SOMETHING TO BROWSER
-    return dates;
+    return datesDTO;
 
   }
 
@@ -59,7 +62,7 @@ public class MyController {
   @ResponseBody
   @PreAuthorize("hasAuthority('GetAverageValue')")
   @RequestMapping("/GetAverageValue")
-  public Float getAverageValue(
+  public AverageDTO getAverageValue(
     @RequestParam String currencyName,
     @RequestParam String startDateString,
     @RequestParam String endDateString
@@ -69,11 +72,12 @@ public class MyController {
     LocalDate startDate = LocalDate.parse(startDateString);
     LocalDate endDate   = LocalDate.parse(endDateString);
 
-    //GET AVERAGE VALUE
-    Float avg = currencyRepository.getAverageValue(currencyName, startDate, endDate);
+    //CREATE DTO
+    AverageDTO averageDTO = new AverageDTO();
+            averageDTO.average = currencyRepository.getAverageValue(currencyName, startDate, endDate);
 
     //RETURN AVERAGE VALUE
-    return avg;
+    return averageDTO;
 
   }
 
