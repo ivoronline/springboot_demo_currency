@@ -1,7 +1,7 @@
-package com.ivoronline.springboot_demo_currency.logger.controllers;
+package com.ivoronline.springboot_demo_currency.loggerDB.controllers;
 
-import com.ivoronline.springboot_demo_currency.logger.entities.Log;
-import com.ivoronline.springboot_demo_currency.logger.repositories.LogRepository;
+import com.ivoronline.springboot_demo_currency.loggerDB.entities.Log;
+import com.ivoronline.springboot_demo_currency.loggerDB.repositories.LogRepository;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;

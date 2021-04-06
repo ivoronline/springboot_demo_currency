@@ -1,6 +1,7 @@
 package com.ivoronline.springboot_demo_currency.business.controllers;
 
 import com.ivoronline.springboot_demo_currency.business.repositories.CurrencyRepository;
+import com.ivoronline.springboot_demo_currency.loggerAOP.LogStartEnd;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,7 @@ public class MyController {
   //================================================================================
   // GET ALL CURRENCY NAMES
   //=================================================================================
+  @LogStartEnd
   @ResponseBody
   @PreAuthorize("hasAuthority('GetAllCurrencyNames')")
   @RequestMapping("/GetAllCurrencyNames")
@@ -34,6 +36,7 @@ public class MyController {
   //================================================================================
   // GET FIRST LAST DATE
   //================================================================================
+  @LogStartEnd
   @ResponseBody
   @PreAuthorize("hasAuthority('GetFirstLastDate')")
   @RequestMapping("/GetFirstLastDate")
@@ -52,6 +55,7 @@ public class MyController {
   //================================================================================
   // GET AVERAGE VALUE
   //================================================================================
+  @LogStartEnd
   @ResponseBody
   @PreAuthorize("hasAuthority('GetAverageValue')")
   @RequestMapping("/GetAverageValue")

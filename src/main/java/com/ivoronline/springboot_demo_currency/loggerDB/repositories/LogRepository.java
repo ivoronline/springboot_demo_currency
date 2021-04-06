@@ -1,6 +1,6 @@
-package com.ivoronline.springboot_demo_currency.logger.repositories;
+package com.ivoronline.springboot_demo_currency.loggerDB.repositories;
 
-import com.ivoronline.springboot_demo_currency.logger.entities.Log;
+import com.ivoronline.springboot_demo_currency.loggerDB.entities.Log;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
