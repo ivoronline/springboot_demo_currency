@@ -1,0 +1,14 @@
+[Unit]
+Description           = Spring Boot Application: Demo Currency
+After                 = network.target
+StartLimitIntervalSec = 0
+
+[Service]
+ExecStart  = /bin/java -jar /home/igoreta/applications/DemoCurrency/springboot_demo_currency-0.0.1-SNAPSHOT.jar
+User       = jenkins
+Type       = simple
+Restart    = always
+RestartSec = 1
+
+[Install]
+WantedBy   = multi-user.target

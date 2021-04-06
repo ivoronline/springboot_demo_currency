@@ -1,15 +1,13 @@
-package com.ivoronline.springboot_demo_currency.controllers;
+package com.ivoronline.springboot_demo_currency.business.controllers;
 
-import com.ivoronline.springboot_demo_currency.entities.Currency;
-import com.ivoronline.springboot_demo_currency.repositories.CurrencyRepository;
+import com.ivoronline.springboot_demo_currency.business.repositories.CurrencyRepository;
+import com.ivoronline.springboot_demo_currency.loggerAOP.LogStartEnd;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -19,11 +17,13 @@ public class MyController {
   @Autowired CurrencyRepository currencyRepository;
 
   //================================================================================
-  // SELECT ALL CURRENCY NAMES
-  //================================================================================
+  // GET ALL CURRENCY NAMES
+  //=================================================================================
+  @LogStartEnd
   @ResponseBody
-  @RequestMapping("/SelectAllCurrencyNames")
-  public List<String> selectAllCurrencyNames()  {
+  @PreAuthorize("hasAuthority('GetAllCurrencyNames')")
+  @RequestMapping("/GetAllCurrencyNames")
+  public List<String> getAllCurrencyNames()  {
 
     //STORE ENTITY
     List<String> allCurrencyNames = currencyRepository.getAllCurrencyNames();
@@ -34,9 +34,11 @@ public class MyController {
   }
 
   //================================================================================
-  // GET FIRST LAST ENTRY
+  // GET FIRST LAST DATE
   //================================================================================
+  @LogStartEnd
   @ResponseBody
+  @PreAuthorize("hasAuthority('GetFirstLastDate')")
   @RequestMapping("/GetFirstLastDate")
   public LocalDate[] getFirstLastDate(@RequestParam String currencyName)  {
 
@@ -53,7 +55,9 @@ public class MyController {
   //================================================================================
   // GET AVERAGE VALUE
   //================================================================================
+  @LogStartEnd
   @ResponseBody
+  @PreAuthorize("hasAuthority('GetAverageValue')")
   @RequestMapping("/GetAverageValue")
   public Float getAverageValue(
     @RequestParam String currencyName,
@@ -71,33 +75,6 @@ public class MyController {
     //RETURN AVERAGE VALUE
     return avg;
 
-  }
-
-  //================================================================================
-  // ADD CURRENCY
-  //================================================================================
-  @ResponseBody
-  @PostMapping("/AddCurrency")
-  public String addCurrency(@RequestBody Currency currency)  {
-
-    //REFORMAT EXCHANGE RATE
-    currency.exchangeRate = Double.parseDouble(currency.exchangeRateString.replace(",", "."));
-
-    //STORE ENTITY
-    currencyRepository.save(currency);
-
-    //RETURN SOMETHING TO BROWSER
-    return "Currency added to DB";
-
-  }
-
-  //================================================================================
-  // HELLO
-  //================================================================================
-  @ResponseBody
-  @RequestMapping("/Hello")
-  public String hello() {
-    return "Hello from Controller";
   }
 
 }

@@ -1,0 +1,7 @@
+My File Appender: 2021-04-06 16:22:36,837 INFO c.i.s.SpringbootDemoCurrencyApplication Starting SpringbootDemoCurrencyApplication using Java 15.0.2 on DESKTOP-E3Q8OF3 with PID 8924 (C:\Projects\springboot_demo_currency\target\classes started by igoreta in C:\Projects\springboot_demo_currency) 
+My File Appender: 2021-04-06 16:22:36,839 INFO c.i.s.SpringbootDemoCurrencyApplication The following profiles are active: local 
+My File Appender: 2021-04-06 16:22:40,075 INFO c.i.s.SpringbootDemoCurrencyApplication Started SpringbootDemoCurrencyApplication in 3.57 seconds (JVM running for 4.285) 
+My File Appender: 2021-04-06 16:22:47,704 INFO c.i.s.l.LogStartEndAspect STARTED METHOD: MyController.getAllCurrencyNames() 
+My File Appender: 2021-04-06 16:22:47,785 INFO c.i.s.l.LogStartEndAspect ENDED   METHOD: MyController.getAllCurrencyNames() 
+My File Appender: 2021-04-06 16:24:02,032 INFO c.i.s.l.LogStartEndAspect STARTED METHOD: MyController.getFirstLastDate() 
+My File Appender: 2021-04-06 16:24:02,067 INFO c.i.s.l.LogStartEndAspect ENDED   METHOD: MyController.getFirstLastDate() 
