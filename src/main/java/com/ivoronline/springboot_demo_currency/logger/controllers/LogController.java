@@ -32,13 +32,13 @@ public class LogController {
   @RequestMapping("/GetLog")
   public ResponseEntity<StreamingResponseBody>  getLog(
     @RequestParam String username,
-    @RequestParam String dateStart,
-    @RequestParam String dateEnd
+    @RequestParam String startDate,
+    @RequestParam String endDate
   ) {
 
     //CONVERT DATES
-    LocalDate startDateConverted = LocalDate.parse(dateStart);
-    LocalDate endDateConverted   = LocalDate.parse(dateEnd);
+    LocalDate startDateConverted = LocalDate.parse(startDate);
+    LocalDate endDateConverted   = LocalDate.parse(endDate);
 
     //GET LOG
     List<Log> logs = logRepository.getLog(username, startDateConverted, endDateConverted);
