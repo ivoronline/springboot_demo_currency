@@ -1,4 +1,4 @@
-package com.ivoronline.springboot_demo_currency.logger.filters;
+package com.ivoronline.springboot_demo_currency.loggerDB.filters;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -7,8 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ivoronline.springboot_demo_currency.logger.entities.Log;
-import com.ivoronline.springboot_demo_currency.logger.repositories.LogRepository;
+import com.ivoronline.springboot_demo_currency.loggerDB.entities.Log;
+import com.ivoronline.springboot_demo_currency.loggerDB.repositories.LogRepository;
 import com.ivoronline.springboot_demo_currency.securitydbauthorities.services.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
