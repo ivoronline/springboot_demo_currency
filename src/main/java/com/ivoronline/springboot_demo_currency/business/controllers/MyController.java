@@ -1,6 +1,9 @@
 package com.ivoronline.springboot_demo_currency.business.controllers;
 
-import com.ivoronline.springboot_demo_currency.business.repositories.CurrencyRepository;
+import com.ivoronline.springboot_demo_currency.business.dto.AverageDTOResponse;
+import com.ivoronline.springboot_demo_currency.business.dto.CurrenciesDTOResponse;
+import com.ivoronline.springboot_demo_currency.business.dto.DatesDTOResponse;
+import com.ivoronline.springboot_demo_currency.business.services.MyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,13 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import javax.validation.constraints.NotBlank;
-import java.time.LocalDate;
-import java.util.List;
 
 @Controller
 public class MyController {
 
-  @Autowired CurrencyRepository currencyRepository;
+  @Autowired MyService myService;
 
   //================================================================================
   // GET ALL CURRENCY NAMES
@@ -26,14 +27,8 @@ public class MyController {
   @ResponseBody
   @PreAuthorize("hasAuthority('GetAllCurrencyNames')")
   @RequestMapping("/GetAllCurrencyNames")
-  public List<String> getAllCurrencyNames()  {
-
-    //STORE ENTITY
-    List<String> allCurrencyNames = currencyRepository.getAllCurrencyNames();
-
-    //RETURN SOMETHING TO BROWSER
-    return allCurrencyNames;
-
+  public CurrenciesDTOResponse getAllCurrencyNames()  {
+    return myService.getAllCurrencyNames();
   }
 
   //================================================================================
@@ -42,16 +37,8 @@ public class MyController {
   @ResponseBody
   @PreAuthorize("hasAuthority('GetFirstLastDate')")
   @RequestMapping("/GetFirstLastDate")
-  public LocalDate[] getFirstLastDate(@RequestParam @NotBlank String currencyName)  {
-
-    LocalDate firstDate = currencyRepository.getFirstDate(currencyName);
-    LocalDate lastDate  = currencyRepository.getLastDate(currencyName);
-
-    LocalDate[] dates = {firstDate, lastDate};
-
-    //RETURN SOMETHING TO BROWSER
-    return dates;
-
+  public DatesDTOResponse getFirstLastDate(@RequestParam @NotBlank String currencyName)  {
+    return myService.getFirstLastDate(currencyName);
   }
 
   //================================================================================
@@ -60,22 +47,12 @@ public class MyController {
   @ResponseBody
   @PreAuthorize("hasAuthority('GetAverageValue')")
   @RequestMapping("/GetAverageValue")
-  public Float getAverageValue(
+  public AverageDTOResponse getAverageValue(
     @RequestParam @NotBlank String currencyName,
     @RequestParam @NotBlank String startDate,
     @RequestParam @NotBlank String endDate
   )  {
-
-    //CONVERT DATES
-    LocalDate startDateConverted = LocalDate.parse(startDate);
-    LocalDate endDateConverted   = LocalDate.parse(endDate);
-
-    //GET AVERAGE VALUE
-    Float avg = currencyRepository.getAverageValue(currencyName, startDateConverted, endDateConverted);
-
-    //RETURN AVERAGE VALUE
-    return avg;
-
+    return myService.getAverageValue(currencyName, startDate, endDate);
   }
 
   //==================================================================

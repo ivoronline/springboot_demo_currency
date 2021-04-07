@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.ivoronline.springboot_demo_currency.loggerDB.entities.Log;
 import com.ivoronline.springboot_demo_currency.loggerDB.repositories.LogRepository;
 import com.ivoronline.springboot_demo_currency.securitydbauthorities.services.MyUserDetailsService;
+import org.hibernate.annotations.Filter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -25,6 +27,8 @@ public class LogFilter extends OncePerRequestFilter {
   @Override
   public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
     throws IOException, ServletException {
+
+    System.out.println("FILTER");
 
     //DIVIDES HTTP REQUEST AND RESPONSE CODE
     chain.doFilter(request, response);
