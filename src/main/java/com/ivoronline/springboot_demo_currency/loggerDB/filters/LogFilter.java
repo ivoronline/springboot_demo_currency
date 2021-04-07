@@ -28,8 +28,6 @@ public class LogFilter extends OncePerRequestFilter {
   public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
     throws IOException, ServletException {
 
-    System.out.println("FILTER");
-
     //DIVIDES HTTP REQUEST AND RESPONSE CODE
     chain.doFilter(request, response);
 

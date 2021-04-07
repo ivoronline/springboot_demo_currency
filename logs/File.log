@@ -1,0 +1,6 @@
+My File Appender: 2021-04-07 11:35:46,947 INFO c.i.s.SpringbootDemoCurrencyApplication Starting SpringbootDemoCurrencyApplication using Java 15.0.2 on DESKTOP-E3Q8OF3 with PID 15244 (C:\Projects\springboot_demo_currency\target\classes started by igoreta in C:\Projects\springboot_demo_currency) 
+My File Appender: 2021-04-07 11:35:46,949 INFO c.i.s.SpringbootDemoCurrencyApplication The following profiles are active: local 
+My File Appender: 2021-04-07 11:35:51,060 INFO c.i.s.SpringbootDemoCurrencyApplication Started SpringbootDemoCurrencyApplication in 4.85 seconds (JVM running for 5.86) 
+My File Appender: 2021-04-07 11:36:12,558 INFO c.i.s.SpringbootDemoCurrencyApplication Starting SpringbootDemoCurrencyApplication using Java 15.0.2 on DESKTOP-E3Q8OF3 with PID 6320 (C:\Projects\springboot_demo_currency\target\classes started by igoreta in C:\Projects\springboot_demo_currency) 
+My File Appender: 2021-04-07 11:36:12,560 INFO c.i.s.SpringbootDemoCurrencyApplication The following profiles are active: local 
+My File Appender: 2021-04-07 11:36:15,842 INFO c.i.s.SpringbootDemoCurrencyApplication Started SpringbootDemoCurrencyApplication in 3.568 seconds (JVM running for 4.244) 
