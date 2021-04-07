@@ -4,6 +4,7 @@ import com.ivoronline.springboot_demo_currency.business.dto.AverageDTOResponse;
 import com.ivoronline.springboot_demo_currency.business.dto.CurrenciesDTOResponse;
 import com.ivoronline.springboot_demo_currency.business.dto.DatesDTOResponse;
 import com.ivoronline.springboot_demo_currency.business.services.MyService;
+import com.ivoronline.springboot_demo_currency.loggerAOP.LogStartEnd;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -24,6 +25,7 @@ public class MyController {
   //================================================================================
   // GET ALL CURRENCY NAMES
   //=================================================================================
+  @LogStartEnd
   @ResponseBody
   @PreAuthorize("hasAuthority('GetAllCurrencyNames')")
   @RequestMapping("/GetAllCurrencyNames")
@@ -34,6 +36,7 @@ public class MyController {
   //================================================================================
   // GET FIRST LAST DATE
   //================================================================================
+  @LogStartEnd
   @ResponseBody
   @PreAuthorize("hasAuthority('GetFirstLastDate')")
   @RequestMapping("/GetFirstLastDate")
@@ -44,6 +47,7 @@ public class MyController {
   //================================================================================
   // GET AVERAGE VALUE
   //================================================================================
+  @LogStartEnd
   @ResponseBody
   @PreAuthorize("hasAuthority('GetAverageValue')")
   @RequestMapping("/GetAverageValue")
